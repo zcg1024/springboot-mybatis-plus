@@ -1,0 +1,50 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: springboot-mybatis-plus
+  datasource:
+  # H2数据库配置
+#    url: jdbc:h2:mem:testdb  # 明确指定内存数据库名称
+#    url: jdbc:h2:file:~/mydb  # 数据保存在用户目录的 mydb.mv.db 文件中
+    # IFEXISTS=FALSE：如果数据库不存在则自动创建
+    #AUTO_SERVER=TRUE：允许多连接访问
+#    url: jdbc:h2:file:E:/data/h2db/testdb;IFEXISTS=FALSE;AUTO_SERVER=TRUE
+    url: jdbc:h2:file:E:/Develop/IDEA_Projects/springboot-mybatis-plus/data/h2db/testdb;IFEXISTS=FALSE;AUTO_SERVER=TRUE
+    driver-class-name: org.h2.Driver
+    username: root
+    password: root
+  sql:
+    init:
+      schema-locations: classpath:db/schema-h2.sql
+      data-locations: classpath:db/data-h2.sql
+      mode: always  # 确保总是初始化
+  # H2控制台配置
+  h2:
+    console:
+      enabled: true  # 启用H2控制台
+      path: /h2-console   # 控制台访问路径（默认是/h2-console）
+      settings:
+        web-allow-others: false # 是否允许远程访问（生产环境建议关闭）
+
+## mysql数据库配置
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    username: root
+#    password: root
+#    url: jdbc:mysql://127.0.0.1:3306/study?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+#  sql:
+#    init:
+#      schema-locations: classpath:db/schema-mysql.sql
+#      data-locations: classpath:db/data-mysql.sql
+#      mode: always
+
+
+# 控制台打印MyBatis-Plus执行的SQL语句
+logging:
+  level:
+    com.zcg.springboot_mybatis_plus.mapper: debug
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

@@ -1,0 +1,11 @@
+-- schema-h2.sql
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE user (
+    id INT AUTO_INCREMENT PRIMARY KEY COMMENT '主键',
+    username VARCHAR(50) NOT NULL UNIQUE COMMENT '用户名',
+    password VARCHAR(100) NOT NULL COMMENT '密码',
+    age INT NULL DEFAULT NULL COMMENT '年龄',
+    email VARCHAR(50) NULL DEFAULT NULL COMMENT '邮箱',
+    enabled BOOLEAN DEFAULT TRUE COMMENT '是否可用',
+    lang VARCHAR(10) DEFAULT 'en' COMMENT '中文：zh / 英文：en'
+) COMMENT '用户表';
